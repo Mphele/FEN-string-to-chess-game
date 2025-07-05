@@ -99,6 +99,14 @@ def main():
                 if not is_valid_white_rook(board, from_row, from_col, to_row, to_col):
                     return
 
+            if piece == "b":
+                if not is_valid_black_bishop(board, from_row, from_col, to_row, to_col):
+                    return
+
+            if piece == "B":
+                if not is_valid_white_bishop(board, from_row, from_col, to_row, to_col):
+                    return
+
             #move validation block
             board[from_row][from_col] = "."
             board[to_row][to_col] = piece
@@ -217,7 +225,6 @@ def is_valid_black_rook(board, from_row, from_col, to_row, to_col):
 
     return True
 
-
 def is_valid_white_rook(board, from_row, from_col, to_row, to_col):
     # 1. Rook can only move in straight lines
     if from_row != to_row and from_col != to_col:
@@ -250,6 +257,66 @@ def is_valid_white_rook(board, from_row, from_col, to_row, to_col):
         return False
     if target != "." and target.islower():
         print("Rook captured black piece")
+
+    return True
+
+def is_valid_black_bishop(board, from_row, from_col, to_row, to_col):
+    # 1. Bishop must move diagonally
+    if abs(to_row - from_row) != abs(to_col - from_col):
+        print("Bishop must move diagonally")
+        return False
+
+    # 2. Determine direction of movement
+    step_row = 1 if to_row > from_row else -1
+    step_col = 1 if to_col > from_col else -1
+
+    # 3. Check that path is clear
+    curr_row = from_row + step_row
+    curr_col = from_col + step_col
+    while curr_row != to_row and curr_col != to_col:
+        if board[curr_row][curr_col] != ".":
+            print("Bishop's path is blocked")
+            return False
+        curr_row += step_row
+        curr_col += step_col
+
+    # 4. Handle capture or destination
+    target = board[to_row][to_col]
+    if target != "." and target.islower():
+        print("Bishop cannot capture same color")
+        return False
+    if target != "." and target.isupper():
+        print("Black Bishop captured white piece")
+
+    return True
+
+def is_valid_white_bishop(board, from_row, from_col, to_row, to_col):
+    # 1. Bishop must move diagonally
+    if abs(to_row - from_row) != abs(to_col - from_col):
+        print("Bishop must move diagonally")
+        return False
+
+    # 2. Determine direction of movement
+    step_row = 1 if to_row > from_row else -1
+    step_col = 1 if to_col > from_col else -1
+
+    # 3. Check that path is clear
+    curr_row = from_row + step_row
+    curr_col = from_col + step_col
+    while curr_row != to_row and curr_col != to_col:
+        if board[curr_row][curr_col] != ".":
+            print("Bishop's path is blocked")
+            return False
+        curr_row += step_row
+        curr_col += step_col
+
+    # 4. Handle capture or destination
+    target = board[to_row][to_col]
+    if target != "." and target.isupper():
+        print("Bishop cannot capture same color")
+        return False
+    if target != "." and target.islower():
+        print("White Bishop captured black piece")
 
     return True
 
