@@ -5,6 +5,8 @@ This is a command-line Python project that parses a FEN string to display a ches
 Features:
 - Visual board with Unicode chess pieces
 - Highlighted movement
-- Pawn and rook move validation
+- Pawn, rook, bishop and knight move validation
 
-Future plans: Add other piece logic and castling.
+Future plans: 
+-Add King and Queen piece logic and castling.
+-Add half move and full move counter.

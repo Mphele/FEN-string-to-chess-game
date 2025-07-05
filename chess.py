@@ -107,6 +107,13 @@ def main():
                 if not is_valid_white_bishop(board, from_row, from_col, to_row, to_col):
                     return
 
+            if piece =="n":
+                if not is_valid_black_knight(board, from_row, from_col, to_row, to_col):
+                    return
+
+            if piece =="N":
+               if not is_valid_white_knight(board, from_row, from_col, to_row, to_col):
+                   return
             #move validation block
             board[from_row][from_col] = "."
             board[to_row][to_col] = piece
@@ -320,6 +327,43 @@ def is_valid_white_bishop(board, from_row, from_col, to_row, to_col):
 
     return True
 
+def is_valid_black_knight(board, from_row, from_col, to_row, to_col):
+    # 1. Define all valid L-shaped moves for a knight
+    row_diff = abs(to_row - from_row)
+    col_diff = abs(to_col - from_col)
+
+    if not ((row_diff == 2 and col_diff == 1) or (row_diff == 1 and col_diff == 2)):
+        print("Knight must move in an L-shape")
+        return False
+
+    # 2. Handle capture logic
+    target = board[to_row][to_col]
+    if target != "." and target.islower():
+        print("Knight cannot capture same color")
+        return False
+    if target != "." and target.isupper():
+        print("Black knight captured white piece")
+
+    return True
+
+def is_valid_white_knight(board, from_row, from_col, to_row, to_col):
+    # 1. Define all valid L-shaped moves for a knight
+    row_diff = abs(to_row - from_row)
+    col_diff = abs(to_col - from_col)
+
+    if not ((row_diff == 2 and col_diff == 1) or (row_diff == 1 and col_diff == 2)):
+        print("Knight must move in an L-shape")
+        return False
+
+    # 2. Handle capture logic
+    target = board[to_row][to_col]
+    if target != "." and target.isupper():
+        print("Knight cannot capture same color")
+        return False
+    if target != "." and target.islower():
+        print("White knight captured black piece")
+
+    return True
 
 
 if __name__ == "__main__":
