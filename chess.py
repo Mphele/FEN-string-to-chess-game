@@ -114,6 +114,23 @@ def main():
             if piece =="N":
                if not is_valid_white_knight(board, from_row, from_col, to_row, to_col):
                    return
+
+            if piece =="q":
+                if not is_valid_black_queen(board, from_row, from_col, to_row, to_col):
+                    return
+
+            if piece == "Q":
+                if not is_valid_white_queen(board, from_row, from_col, to_row, to_col):
+                    return
+
+            if piece == "k":
+                if not is_valid_black_king(board, from_row, from_col, to_row, to_col):
+                    return
+
+            if piece == "K":
+                if not is_valid_white_king(board, from_row, from_col, to_row, to_col):
+                    return
+
             #move validation block
             board[from_row][from_col] = "."
             board[to_row][to_col] = piece
@@ -131,7 +148,7 @@ def main():
         print()
         fr = input("From: ").lower()
         to = input("to: ").lower()
-        if fr == "end":
+        if fr == "end" or to=="end":
             break
         move_piece(board, fr, to)
 
@@ -362,6 +379,123 @@ def is_valid_white_knight(board, from_row, from_col, to_row, to_col):
         return False
     if target != "." and target.islower():
         print("White knight captured black piece")
+
+    return True
+
+def is_valid_black_queen(board, from_row, from_col, to_row, to_col):
+
+    row_diff = abs(to_row - from_row)
+    col_diff = abs(to_col - from_col)
+
+
+    if row_diff == col_diff:
+        step_row = 1 if to_row > from_row else -1
+        step_col = 1 if to_col > from_col else -1
+        curr_row, curr_col = from_row + step_row, from_col + step_col
+        while curr_row != to_row and curr_col != to_col:
+            if board[curr_row][curr_col] != ".":
+                print("Queen's diagonal path is blocked")
+                return False
+            curr_row += step_row
+            curr_col += step_col
+
+
+    elif from_row == to_row or from_col == to_col:
+        step_row = 0 if from_row == to_row else (1 if to_row > from_row else -1)
+        step_col = 0 if from_col == to_col else (1 if to_col > from_col else -1)
+        curr_row, curr_col = from_row + step_row, from_col + step_col
+        while curr_row != to_row or curr_col != to_col:
+            if board[curr_row][curr_col] != ".":
+                print("Queen's straight path is blocked")
+                return False
+            curr_row += step_row
+            curr_col += step_col
+    else:
+        print("Queen must move in a straight line or diagonally")
+        return False
+
+
+    target = board[to_row][to_col]
+    if target != "." and target.islower():
+        print("Queen cannot capture same color")
+        return False
+    if target != "." and target.isupper():
+        print("Black Queen captured white piece")
+
+    return True
+
+def is_valid_white_queen(board, from_row, from_col, to_row, to_col):
+    row_diff = abs(to_row - from_row)
+    col_diff = abs(to_col - from_col)
+
+    if row_diff == col_diff:
+        step_row = 1 if to_row > from_row else -1
+        step_col = 1 if to_col > from_col else -1
+        curr_row, curr_col = from_row + step_row, from_col + step_col
+        while curr_row != to_row and curr_col != to_col:
+            if board[curr_row][curr_col] != ".":
+                print("Queen's diagonal path is blocked")
+                return False
+            curr_row += step_row
+            curr_col += step_col
+
+
+    elif from_row == to_row or from_col == to_col:
+        step_row = 0 if from_row == to_row else (1 if to_row > from_row else -1)
+        step_col = 0 if from_col == to_col else (1 if to_col > from_col else -1)
+        curr_row, curr_col = from_row + step_row, from_col + step_col
+        while curr_row != to_row or curr_col != to_col:
+            if board[curr_row][curr_col] != ".":
+                print("Queen's straight path is blocked")
+                return False
+            curr_row += step_row
+            curr_col += step_col
+    else:
+        print("Queen must move in a straight line or diagonally")
+        return False
+
+    target = board[to_row][to_col]
+    if target != "." and target.isupper():
+        print("Queen cannot capture same color")
+        return False
+    if target != "." and target.islower():
+        print("White Queen captured black piece")
+
+    return True
+
+def is_valid_black_king(board, from_row, from_col, to_row, to_col):
+
+    row_diff = abs(to_row - from_row)
+    col_diff = abs(to_col - from_col)
+
+    if row_diff > 1 or col_diff > 1:
+        print("King can only move one square in any direction")
+        return False
+
+    target = board[to_row][to_col]
+    if target != "." and target.islower():
+        print("King cannot capture same color")
+        return False
+    if target != "." and target.isupper():
+        print("Black king captured white piece")
+
+    return True
+
+def is_valid_white_king(board, from_row, from_col, to_row, to_col):
+
+    row_diff = abs(to_row - from_row)
+    col_diff = abs(to_col - from_col)
+
+    if row_diff > 1 or col_diff > 1:
+        print("King can only move one square in any direction")
+        return False
+
+    target = board[to_row][to_col]
+    if target != "." and target.isupper():
+        print("King cannot capture same color")
+        return False
+    if target != "." and target.islower():
+        print("White king captured black piece")
 
     return True
 
