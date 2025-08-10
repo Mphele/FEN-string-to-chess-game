@@ -1,5 +1,12 @@
 import copy
 
+PIECE_NAMES = {
+    "P": "Pawn", "R": "Rook", "N": "Knight",
+    "B": "Bishop", "Q": "Queen", "K": "King",
+    "p": "Pawn", "r": "Rook", "n": "Knight",
+    "b": "Bishop", "q": "Queen", "k": "King"
+}
+
 def main():
     fen = input("Enter a FEN string: ")
     board = fen_to_list(fen)
@@ -236,6 +243,9 @@ def is_valid_black_pawn(board, from_row, from_col, to_row, to_col, suppress_outp
             if not suppress_output:
                 print("Pawn cannot capture same color")
             return False
+        if target.isupper():
+            if not suppress_output:
+                print(f"Black Pawn captured White {PIECE_NAMES[target]}")
         return True
 
     if to_col == from_col:
@@ -271,6 +281,9 @@ def is_valid_white_pawn(board, from_row, from_col, to_row, to_col, suppress_outp
             if not suppress_output:
                 print("Pawn cannot capture same color")
             return False
+        if target.islower():
+            if not suppress_output:
+                print(f"White Pawn captured Black {PIECE_NAMES[target]}")
         return True
 
 
@@ -322,6 +335,9 @@ def is_valid_black_rook(board, from_row, from_col, to_row, to_col, suppress_outp
         if not suppress_output:
             print("Rook cannot capture same color")
         return False
+    if target.isupper():
+        if not suppress_output:
+            print(f"Black Rook captured White {PIECE_NAMES[target]}")
 
     return True
 
@@ -358,6 +374,9 @@ def is_valid_white_rook(board, from_row, from_col, to_row, to_col, suppress_outp
         if not suppress_output:
             print("Rook cannot capture same color")
         return False
+    if target.islower():
+        if not suppress_output:
+            print(f"White Rook captured Black {PIECE_NAMES[target]}")
 
 
     return True
@@ -390,6 +409,9 @@ def is_valid_black_bishop(board, from_row, from_col, to_row, to_col, suppress_ou
         if not suppress_output:
             print("Bishop cannot capture same color")
         return False
+    if target.isupper():
+        if not suppress_output:
+            print(f"Black Bishop captured White {PIECE_NAMES[target]}")
 
     return True
 
@@ -421,6 +443,9 @@ def is_valid_white_bishop(board, from_row, from_col, to_row, to_col, suppress_ou
         if not suppress_output:
             print("Bishop cannot capture same color")
         return False
+    if target.islower():
+        if not suppress_output:
+            print(f"White Bishop captured Black {PIECE_NAMES[target]}")
 
     return True
 
@@ -440,6 +465,9 @@ def is_valid_black_knight(board, from_row, from_col, to_row, to_col, suppress_ou
         if not suppress_output:
             print("Knight cannot capture same color")
         return False
+    if target.isupper():
+        if not suppress_output:
+            print(f"Black Knight captured White {PIECE_NAMES[target]}")
 
     return True
 
@@ -459,6 +487,9 @@ def is_valid_white_knight(board, from_row, from_col, to_row, to_col, suppress_ou
         if not suppress_output:
             print("Knight cannot capture same color")
         return False
+    if target.islower():
+        if not suppress_output:
+            print(f"White Knight captured Black {PIECE_NAMES[target]}")
 
     return True
 
@@ -499,6 +530,9 @@ def is_valid_black_queen(board, from_row, from_col, to_row, to_col, suppress_out
         if not suppress_output:
             print("Queen cannot capture same color")
         return False
+    if target.isupper():
+        if not suppress_output:
+            print(f"Black Queen captured White {PIECE_NAMES[target]}")
 
     return True
 
@@ -539,6 +573,9 @@ def is_valid_white_queen(board, from_row, from_col, to_row, to_col, suppress_out
         if not suppress_output:
             print("Queen cannot capture same color")
         return False
+    if target.islower():
+        if not suppress_output:
+            print(f"White Queen captured Black {PIECE_NAMES[target]}")
 
     return True
 
@@ -556,6 +593,9 @@ def is_valid_black_king(board, from_row, from_col, to_row, to_col, suppress_outp
         if not suppress_output:
             print("King cannot capture same color")
         return False
+    if target.isupper():
+        if not suppress_output:
+            print(f"Black King captured White {PIECE_NAMES[target]}")
 
     return True
 
@@ -573,6 +613,9 @@ def is_valid_white_king(board, from_row, from_col, to_row, to_col, suppress_outp
         if not suppress_output:
             print("King cannot capture same color")
         return False
+    if target.islower():
+        if not suppress_output:
+            print(f"White King captured Black {PIECE_NAMES[target]}")
 
     return True
 
