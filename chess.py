@@ -82,6 +82,7 @@ def list_to_board(board, highlight_squares=None):
 def move_piece(board, from_square, to_square):
         valid_co = "abcdefgh"
         print(f"Move: {from_square} to {to_square}")
+
         if len(from_square) != 2 or len(to_square) != 2:
             return print("Invalid co-ordinate length")
         elif from_square[0] not in valid_co or int(from_square[1]) > 8:
@@ -110,51 +111,27 @@ def move_piece(board, from_square, to_square):
             if piece == ".":
                 return print("Cannot move an empty square")
 
-            #move validation block
+            move_validators = {
+                "p": is_valid_black_pawn,
+                "P": is_valid_white_pawn,
+                "r": is_valid_black_rook,
+                "R": is_valid_white_rook,
+                "b": is_valid_black_bishop,
+                "B": is_valid_white_bishop,
+                "n": is_valid_black_knight,
+                "N": is_valid_white_knight,
+                "q": is_valid_black_queen,
+                "Q": is_valid_white_queen,
+                "k": is_valid_black_king,
+                "K": is_valid_white_king,
+            }
 
-            if piece == "p":
-                if not is_valid_black_pawn(board, from_row, from_col, to_row, to_col, suppress_output=False):
-                    return
-            if piece == "P":
-                if not is_valid_white_pawn(board, from_row, from_col, to_row, to_col, suppress_output=False):
-                    return
+            if piece not in move_validators:
+                return print("Unknown piece type")
 
-            if piece == "r":
-                if not is_valid_black_rook(board, from_row, from_col, to_row, to_col, suppress_output=False):
-                    return
-            if piece == "R":
-                if not is_valid_white_rook(board, from_row, from_col, to_row, to_col, suppress_output=False):
-                    return
-
-            if piece == "b":
-                if not is_valid_black_bishop(board, from_row, from_col, to_row, to_col, suppress_output=False):
-                    return
-            if piece == "B":
-                if not is_valid_white_bishop(board, from_row, from_col, to_row, to_col, suppress_output=False):
-                    return
-
-            if piece == "n":
-                if not is_valid_black_knight(board, from_row, from_col, to_row, to_col, suppress_output=False):
-                    return
-            if piece == "N":
-                if not is_valid_white_knight(board, from_row, from_col, to_row, to_col, suppress_output=False):
-                    return
-
-            if piece == "q":
-                if not is_valid_black_queen(board, from_row, from_col, to_row, to_col, suppress_output=False):
-                    return
-            if piece == "Q":
-                if not is_valid_white_queen(board, from_row, from_col, to_row, to_col, suppress_output=False):
-                    return
-
-            if piece == "k":
-                if not is_valid_black_king(board, from_row, from_col, to_row, to_col, suppress_output=False):
-                    return
-            if piece == "K":
-                if not is_valid_white_king(board, from_row, from_col, to_row, to_col, suppress_output=False):
-                    return
-
-            #move validation block
+            is_valid = move_validators[piece](board, from_row, from_col, to_row, to_col, suppress_output=False)
+            if not is_valid:
+                return
 
 
             board[from_row][from_col] = "."
