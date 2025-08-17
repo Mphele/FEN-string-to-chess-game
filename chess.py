@@ -116,42 +116,42 @@ def move_piece(board, from_square, to_square):
                 if not is_valid_black_pawn(board, from_row, from_col, to_row, to_col, suppress_output=False):
                     return
             if piece == "P":
-                if not is_valid_white_pawn(board, from_row, from_col, to_row, to_col, suppress_output=True):
+                if not is_valid_white_pawn(board, from_row, from_col, to_row, to_col, suppress_output=False):
                     return
 
             if piece == "r":
-                if not is_valid_black_rook(board, from_row, from_col, to_row, to_col, suppress_output=True):
+                if not is_valid_black_rook(board, from_row, from_col, to_row, to_col, suppress_output=False):
                     return
             if piece == "R":
-                if not is_valid_white_rook(board, from_row, from_col, to_row, to_col, suppress_output=True):
+                if not is_valid_white_rook(board, from_row, from_col, to_row, to_col, suppress_output=False):
                     return
 
             if piece == "b":
-                if not is_valid_black_bishop(board, from_row, from_col, to_row, to_col, suppress_output=True):
+                if not is_valid_black_bishop(board, from_row, from_col, to_row, to_col, suppress_output=False):
                     return
             if piece == "B":
-                if not is_valid_white_bishop(board, from_row, from_col, to_row, to_col, suppress_output=True):
+                if not is_valid_white_bishop(board, from_row, from_col, to_row, to_col, suppress_output=False):
                     return
 
             if piece == "n":
-                if not is_valid_black_knight(board, from_row, from_col, to_row, to_col, suppress_output=True):
+                if not is_valid_black_knight(board, from_row, from_col, to_row, to_col, suppress_output=False):
                     return
             if piece == "N":
-                if not is_valid_white_knight(board, from_row, from_col, to_row, to_col, suppress_output=True):
+                if not is_valid_white_knight(board, from_row, from_col, to_row, to_col, suppress_output=False):
                     return
 
             if piece == "q":
-                if not is_valid_black_queen(board, from_row, from_col, to_row, to_col, suppress_output=True):
+                if not is_valid_black_queen(board, from_row, from_col, to_row, to_col, suppress_output=False):
                     return
             if piece == "Q":
-                if not is_valid_white_queen(board, from_row, from_col, to_row, to_col, suppress_output=True):
+                if not is_valid_white_queen(board, from_row, from_col, to_row, to_col, suppress_output=False):
                     return
 
             if piece == "k":
-                if not is_valid_black_king(board, from_row, from_col, to_row, to_col, suppress_output=True):
+                if not is_valid_black_king(board, from_row, from_col, to_row, to_col, suppress_output=False):
                     return
             if piece == "K":
-                if not is_valid_white_king(board, from_row, from_col, to_row, to_col, suppress_output=True):
+                if not is_valid_white_king(board, from_row, from_col, to_row, to_col, suppress_output=False):
                     return
 
             #move validation block
