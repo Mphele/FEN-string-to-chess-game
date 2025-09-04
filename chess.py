@@ -133,6 +133,26 @@ def move_piece(board, from_square, to_square):
             if not is_valid:
                 return
 
+            if is_valid and piece == 'p' and to_row==7 :
+                promotion_options =['q', 'r', 'b', 'n']
+                while True:
+                    promotion_choice = input("Black pawn reached 8th rank! Promote to (q, r, b, n):")
+                    if promotion_choice not in promotion_options:
+                        continue
+                    break
+                piece=promotion_choice
+
+
+            if is_valid and piece == 'P' and to_row==0 :
+                promotion_options =['Q', 'R', 'B', 'N']
+                while True:
+                    promotion_choice = input("White pawn reached 8th rank! Promote to (Q, R, B, N):")
+                    if promotion_choice not in promotion_options:
+                        continue
+                    break
+                piece=promotion_choice
+
+
 
             board[from_row][from_col] = "."
             board[to_row][to_col] = piece
